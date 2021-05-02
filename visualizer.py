@@ -1,5 +1,6 @@
 import csv
 import os
+import math
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -67,8 +68,11 @@ for i in range(len(data['Millennial'][1])):
     plt.xlabel('Years after the last of each Generation has been born')
     plt.ylabel('Share of wealth [%]')
 
-    plt.title("% Of US Wealth owned by each Generation vs Yongest Age For That Generation")
+    plt.title("% Of US Wealth owned by each Generation\n vs Yongest Age For That Generation")
+    yearText = "Date: " + str(math.floor(i/4 + 1995.75)) + ":Q" + str((i+3)%4 + 1)
 
+
+    plt.text(55, 5, yearText)
     plt.legend()
 
     plt.savefig(filename)
