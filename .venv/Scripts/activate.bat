@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\dlin2\Documents\GitHub\WealthVisualizer\.venv
+set VIRTUAL_ENV=C:\Users\David\Documents\GitHub\wealthvisualizer\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 
