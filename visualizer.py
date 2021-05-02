@@ -67,7 +67,7 @@ for i in range(len(data['Millennial'][1])):
     plt.xlabel('Years after the last of each Generation has been born')
     plt.ylabel('Share of wealth [%]')
 
-    plt.title("Fraction of all US Wealth owned by each Generation relative to their age")
+    plt.title("% Of US Wealth owned by each Generation vs Yongest Age For That Generation")
 
     plt.legend()
 
