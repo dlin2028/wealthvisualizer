@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import imageio
-from matplotlib.animation import FuncAnimation, PillowWriter 
 
 data = dict()
 
@@ -36,16 +35,6 @@ for i in range(len(data['BabyBoom'][0])):
     data['GenX'][0][i] = data['GenX'][0][i] -1980
     data['Millennial'][0][i] = data['Millennial'][0][i] -1996
 
-up_to_delete = 0
-
-for i in range(len(data['Millennial'][0])):
-    if data['Millennial'][0][i] >= 0:
-        up_to_delete = i
-        break
-
-data['Millennial'][0] = data['Millennial'][0][up_to_delete:]
-data['Millennial'][1] = data['Millennial'][1][up_to_delete:]
-
 plt.style.use('dark_background')
 
 filenames = []
@@ -54,26 +43,36 @@ for i in range(len(data['Millennial'][1])):
     filename = f'{i}.png'
     filenames.append(filename)
 
-    plt.plot(data['Silent'][0][:i], data['Silent'][1][:i], label='Silent')
-    plt.plot(data['BabyBoom'][0][:i], data['BabyBoom'][1][:i], label='BabyBoom')
-    plt.plot(data['GenX'][0][:i], data['GenX'][1][:i], label='GenX')
-    plt.plot(data['Millennial'][0][:i], data['Millennial'][1][:i], label='Millennial')
 
     plt.axhline(0, color='grey')
     plt.axvline(0, color='grey')
     
-    plt.xlim(0,70)
+    plt.plot(data['Silent'][0], data['Silent'][1], label='Silent')
+    plt.plot(data['BabyBoom'][0], data['BabyBoom'][1], label='BabyBoom')
+    plt.plot(data['GenX'][0], data['GenX'][1], label='GenX')
+    plt.plot(data['Millennial'][0], data['Millennial'][1], label='Millennial')
+
+    plt.scatter(data['Silent'][0][i], data['Silent'][1][i])
+    plt.scatter(data['BabyBoom'][0][i], data['BabyBoom'][1][i])
+    plt.scatter(data['GenX'][0][i], data['GenX'][1][i])
+    plt.scatter(data['Millennial'][0][i], data['Millennial'][1][i])
+
+    plt.xlim(0,80)
     plt.ylim(0,90)
     plt.yticks(range(0,100,10))
     plt.xlabel('Years after the last of each Generation has been born')
     plt.ylabel('Share of wealth [%]')
 
     plt.title("% Of US Wealth owned by each Generation\n vs Yongest Age For That Generation")
-    yearText = "Date: " + str(math.floor(i/4 + 1995.75)) + ":Q" + str((i+3)%4 + 1)
-
-
-    plt.text(55, 5, yearText)
+    yearText = "Date: " + str(math.floor(i/4 + 1988)) + ":Q" + str((i+2)%4 + 1)
     plt.legend()
+    plt.text(5, 50, yearText)
+
+    a = plt.axes([0.1, 0.55, .333, .333])
+    plt.xlim(0, 0.2)
+    A = [data['Silent'][1][i], data['BabyBoom'][1][i], data['GenX'][1][i], data['Millennial'][1][i]]
+    plt.pie(A)
+
 
     plt.savefig(filename)
     plt.close()
