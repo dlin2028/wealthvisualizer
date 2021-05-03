@@ -67,6 +67,7 @@ for i in range(len(data['Millennial'][1])):
     yearText = "Date: " + str(math.floor(i/4 + 1988)) + ":Q" + str((i+2)%4 + 1)
     plt.legend()
     plt.text(5, 50, yearText)
+    plt.text(80, 0, "u/shadysocks4", rotation=90)
 
     a = plt.axes([0.1, 0.55, .333, .333])
     plt.xlim(0, 0.2)
